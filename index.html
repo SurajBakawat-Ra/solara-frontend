@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solara Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+  <script defer src="config.js"></script>
+  <script defer src="assets/app.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo">☀️</span>
+        <span class="name">Solara</span>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#games">Games</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Bright, punchy, pick‑up‑and‑play.</h1>
+      <p>We’re Solara — making tight, joyful games for PC and mobile.</p>
+      <a class="cta" href="#games">Explore our games</a>
+    </div>
+    <div class="gradient"></div>
+  </section>
+
+  <main class="container">
+    <section id="about" class="card">
+      <h2>What we do</h2>
+      <p>We build lean, stylish experiences with instant fun and clean aesthetics. From
+      vector‑driven action on PC to tap‑happy arcade on mobile, we ship games that respect your time and thrill your thumbs.</p>
+    </section>
+
+    <section id="games" class="card">
+      <div class="section-head">
+        <h2>Games</h2>
+        <div class="filters">
+          <select id="platformFilter">
+            <option value="">All platforms</option>
+            <option value="PC">PC</option>
+            <option value="Android">Android</option>
+          </select>
+          <input id="searchInput" type="search" placeholder="Search by title or tag…" />
+        </div>
+      </div>
+      <div id="gamesGrid" class="grid"></div>
+    </section>
+
+    <section id="contact" class="card">
+      <h2>Contact</h2>
+      <form id="contactForm" class="contact-form">
+        <div class="row">
+          <label>Name
+            <input name="name" required />
+          </label>
+          <label>Email
+            <input name="email" type="email" required />
+          </label>
+        </div>
+        <label>Subject
+          <input name="subject" required />
+        </label>
+        <label>Message
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit">Send</button>
+        <small class="muted" id="contactHint">This form uses your API if configured, otherwise it won’t send.</small>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© <span id="year"></span> Solara Games</span>
+      <a href="#games">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- Trailer modal -->
+  <dialog id="trailerModal">
+    <div class="modal-content">
+      <button id="closeModal" aria-label="Close">✕</button>
+      <div class="video-wrap">
+        <iframe id="ytFrame" src="" title="YouTube video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>
