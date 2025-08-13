@@ -11,7 +11,8 @@
     ],
     "tags": [
       "Arcade",
-      "Flight"
+      "Flight",
+      "Platformer"
     ],
     "images": {
       "cover": "https://img.youtube.com/vi/Q_pv6QVvIjA/hqdefault.jpg"
@@ -36,7 +37,7 @@
     "images": {
       "cover": "https://img.youtube.com/vi/YiDwlVA0btQ/hqdefault.jpg"
     },
-    "description": "GunBoxing is a free-to-play, fast-paced multiplayer shooter with a heavy focus on fighting game mechanics like melee combos/air juggles, parries, ducking and sidestepping attacks to punish, meter for super attacks, etc. combining long range shooting combat with crazy close range melee combat."
+    "description": "GunBoxing is a free-to-play, fast-paced multiplayer shooter with a heavy focus on fighting game mechanics, combining long range shooting combat with crazy close range melee combat."
   },
   {
     "id": "cosmo-war",

@@ -1,44 +1,33 @@
-/* global API_BASE */
 const grid = document.getElementById("gamesGrid");
 const platformFilter = document.getElementById("platformFilter");
 const searchInput = document.getElementById("searchInput");
 const trailerModal = document.getElementById("trailerModal");
 const ytFrame = document.getElementById("ytFrame");
 const closeModal = document.getElementById("closeModal");
-const contactForm = document.getElementById("contactForm");
-const contactHint = document.getElementById("contactHint");
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
 let games = [];
 
+// Always load from local JSON
 async function loadGames() {
   try {
-    if (API_BASE) {
-      const res = await fetch(`${API_BASE}/api/games`);
-      if (!res.ok) throw new Error("API error");
-      games = await res.json();
-      contactHint.textContent = "Contact form will send via your API.";
-    } else {
-      const res = await fetch("data/games.json");
-      games = await res.json();
-      contactHint.textContent = "No API configured yet, the form will not send.";
-    }
-  } catch (e) {
-    console.error("Falling back to local data:", e);
     const res = await fetch("data/games.json");
+    if (!res.ok) throw new Error("Failed to load local data");
     games = await res.json();
-    contactHint.textContent = "API unavailable; using local data.";
+  } catch (e) {
+    console.error("Error loading local games data:", e);
   }
   render();
 }
+
 
 function render() {
   const q = searchInput.value.trim().toLowerCase();
   const pf = platformFilter.value;
   const filtered = games.filter(g => {
     const inPlatform = !pf || g.platforms?.includes(pf);
-    const inQuery = !q || g.title.toLowerCase().includes(q) || (g.tags||[]).join(" ").toLowerCase().includes(q);
+    const inQuery = !q || g.title.toLowerCase().includes(q) || (g.tags || []).join(" ").toLowerCase().includes(q);
     return inPlatform && inQuery;
   });
 
@@ -120,30 +109,5 @@ trailerModal.addEventListener("close", () => { ytFrame.src = ""; });
 
 platformFilter.addEventListener("change", render);
 searchInput.addEventListener("input", render);
-
-contactForm.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const formData = new FormData(contactForm);
-  const payload = Object.fromEntries(formData.entries());
-
-  if (!API_BASE) {
-    alert("No API configured yet. Set API_BASE in config.js after deploying your backend.");
-    return;
-  }
-  try {
-    const res = await fetch(`${API_BASE}/api/contact`, {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify(payload)
-    });
-    if (!res.ok) throw new Error("Failed to send");
-    const j = await res.json();
-    alert("Thanks! Message received.");
-    contactForm.reset();
-  } catch (err) {
-    console.error(err);
-    alert("Something went wrong sending your message.");
-  }
-});
 
 loadGames();
