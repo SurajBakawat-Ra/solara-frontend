@@ -31,7 +31,7 @@ html, body { margin: 0; padding: 0; font-family: Inter, system-ui, -apple-system
 .hero {
   position: relative; overflow: hidden; border-bottom: 1px solid var(--border);
 }
-.hero .container { padding: 82px 0 64px; }
+/* .hero .container { padding: 82px 0 64px; } */
 .hero h1 { font-size: clamp(1.8rem, 2.6vw + 1rem, 3rem); margin: 0 0 8px; }
 .hero p { color: var(--muted); margin: 0 0 18px; max-width: 650px; }
 .cta { display: inline-block; padding: 10px 16px; border-radius: 14px; background: var(--brand);
@@ -118,4 +118,30 @@ html, body { margin: 0; padding: 0; font-family: Inter, system-ui, -apple-system
 
 @media (max-width: 680px) {
   .contact-form .row { grid-template-columns: 1fr; }
+}
+
+.logo-img {
+  height: 28px; /* adjust as needed */
+  width: auto;
+}
+
+/* .hero-logo {
+  max-height: 200px; 
+  display: block;
+  margin: 0 auto 1.5rem auto; 
+} */
+
+.hero .container {
+  display: flex;
+  align-items: center; /* vertically center the image & text */
+  gap: 2rem; /* space between image and text */
+}
+
+.hero-logo {
+  max-height: 200px;
+  margin: 0; /* remove auto-centering from before */
+}
+
+.hero-text {
+  flex: 1; /* let the text take up remaining space */
 }
