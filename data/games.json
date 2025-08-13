@@ -11,12 +11,12 @@
     ],
     "tags": [
       "Arcade",
-      "Action"
+      "Flight"
     ],
     "images": {
       "cover": "https://img.youtube.com/vi/Q_pv6QVvIjA/hqdefault.jpg"
     },
-    "description": "Fast-paced action set in a stylized vector world. Official store and trailer links below."
+    "description": "Launch into Vector Horizon and guide a car built to fly through high-skill obstacle courses. Nail your timing, perfect your control, and soar through the sky."
   },
   {
     "id": "gunboxing",
@@ -30,16 +30,17 @@
     ],
     "tags": [
       "Fighting",
-      "Action"
+      "Multiplayer",
+      "First Person Shooter"
     ],
     "images": {
       "cover": "https://img.youtube.com/vi/YiDwlVA0btQ/hqdefault.jpg"
     },
-    "description": "Punch, shoot, and style\u2014an over-the-top brawler. Official store and trailer links below."
+    "description": "GunBoxing is a free-to-play, fast-paced multiplayer shooter with a heavy focus on fighting game mechanics like melee combos/air juggles, parries, ducking and sidestepping attacks to punish, meter for super attacks, etc. combining long range shooting combat with crazy close range melee combat."
   },
   {
     "id": "cosmo-war",
-    "title": "Cosmo War",
+    "title": "CosmoWar",
     "stores": {
       "googlePlay": "https://play.google.com/store/apps/details?id=com.solaragames.cosmowar"
     },
@@ -49,12 +50,12 @@
     ],
     "tags": [
       "Arcade",
-      "Casual"
+      "Action"
     ],
     "images": {
       "cover": "https://img.youtube.com/vi/OOpC1lYbfBs/hqdefault.jpg"
     },
-    "description": "Mobile arcade action. Google Play link below."
+    "description": "Prepare your starship, take to the stars, and defend the galaxy in CosmoWAR: Galaxy Shooter! The universe is counting on you."
   },
   {
     "id": "almanac",
@@ -67,13 +68,13 @@
       "Android"
     ],
     "tags": [
-      "Puzzle",
-      "Casual"
+      "Story Driven",
+      "Fantasy"
     ],
     "images": {
       "cover": "https://img.youtube.com/vi/pW4nIEWJsmc/hqdefault.jpg"
     },
-    "description": "A thoughtful mobile experience. Trailer and store link below."
+    "description": "A 2D fantasy RPG with only one goal, killing the Precursor, who is an omnipotent being that destroys and recreates the world whenever he wants."
   },
   {
     "id": "chicken-bounce",
@@ -92,7 +93,7 @@
     "images": {
       "cover": "https://play-lh.googleusercontent.com/Bg3XDY6b4aFpKvlJxN4244mM-46-DMGXergtwO7GxcKMmaqe1ox7P6Ng-7mLDKnBmaYU=s256-rw"
     },
-    "description": "Light, bouncy fun on mobile. Google Play link below."
+    "description": "Welcome to Chicken Bounce, guide a playful chicken through a series of challenging obstacles! With simple controls and addictive gameplay, Chicken Bounce will keep you entertained for hours."
   },
   {
     "id": "tappy-fly",
@@ -111,6 +112,6 @@
     "images": {
       "cover": "https://play-lh.googleusercontent.com/BB516ty5zmLHYZgEgOna6kSF2H_TJwhGKobDhv0-7O90SY8bcVXF7NyiK4mnhc7wkg=w240-h480-rw"
     },
-    "description": "Tap to fly and dodge in this pick-up-and-play mobile game."
+    "description": "TappyFly is a captivating mobile game designed to test your reflexes and precision. In this game, players tap the screen to control a shape, guiding it through a series of increasingly difficult obstacles."
   }
 ]
