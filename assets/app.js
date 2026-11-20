@@ -196,7 +196,6 @@ function webCard(g) {
   return `
     <article class="web-card">
       <div class="web-thumb">
-        <span class="web-tag">Playable</span>
         <img src="${esc(imageUrl(g.image))}" alt="${esc(g.title)} cover art" loading="lazy"
           onerror="this.onerror=null;this.src='${PLACEHOLDER_IMG}'" />
         <div class="web-play">
