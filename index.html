@@ -301,12 +301,21 @@
   <!-- WebGL player -->
   <dialog id="playerModal" class="modal player-modal">
     <div class="modal-shell player-shell">
-      <div class="modal-bar">
-        <span class="modal-title" id="playerTitle">Game</span>
+      <div class="modal-bar player-bar">
+        <div class="player-head">
+          <span class="player-brand">Solara</span>
+          <span class="player-divider" aria-hidden="true"></span>
+          <span class="modal-title" id="playerTitle">Game</span>
+        </div>
         <div class="player-controls">
-          <button class="icon-btn wide" id="playerFullscreen" aria-label="Toggle fullscreen">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
+          <button class="icon-btn wide" id="playerFullscreen" aria-label="Enter fullscreen"
+            aria-pressed="false">
+            <svg class="fs-expand" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor"
+                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <svg class="fs-compress" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M9 4v5H4M20 9h-5V4M15 20v-5h5M4 15h5v5" fill="none" stroke="currentColor"
                 stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
             </svg>
           </button>
@@ -317,6 +326,7 @@
         <iframe id="playerFrame" src="" title="Playable game"
           allow="fullscreen; gamepad; autoplay; clipboard-write; encrypted-media; accelerometer; gyroscope"></iframe>
         <div class="player-overlay" id="playerOverlay">
+          <img src="assets/solara-logo.png" alt="" class="overlay-logo">
           <span class="spinner" aria-hidden="true"></span>
           <p id="playerMessage">Loading the build…</p>
         </div>

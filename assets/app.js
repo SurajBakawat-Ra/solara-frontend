@@ -217,9 +217,20 @@ function webCard(g) {
 
 /* ------------------------------- webgl player ------------------------------- */
 
+/* A game build is either an absolute URL (its own GitHub Pages repo) or a
+   folder inside this repo. `path` is optional and defaults to the folder. */
+function resolveGamePath(g) {
+  const path = String(g.path ?? "").trim();
+  if (!path) return `unity-games/${g.id}/index.html`;
+  return /^https?:\/\//i.test(path) ? path : path.replace(/^\.?\//, "");
+}
+
 async function openPlayer(id) {
   const game = state.webGames.find((g) => g.id === id);
   if (!game) return;
+
+  const url = resolveGamePath(game);
+  const isRemote = /^https?:\/\//i.test(url);
 
   state.currentWebGame = game;
   els.playerTitle.textContent = game.title;
@@ -230,14 +241,13 @@ async function openPlayer(id) {
 
   els.playerModal.showModal();
 
-  const isRemote = /^https?:\/\//i.test(game.path);
   if (!isRemote) {
     /* Friendly message when the build folder has not been dropped in yet. */
     try {
-      const res = await fetch(game.path, { method: "HEAD", cache: "no-store" });
+      const res = await fetch(url, { method: "HEAD", cache: "no-store" });
       if (!res.ok) {
         showPlayerError(
-          `No build found at ${game.path}. Add the Unity WebGL export to that folder, or run the site from a local web server (file:// cannot serve WebGL builds).`
+          `No build found at ${url}. Add the Unity WebGL export to that folder, or run the site from a local web server (file:// cannot serve WebGL builds).`
         );
         return;
       }
@@ -249,7 +259,7 @@ async function openPlayer(id) {
     }
   }
 
-  els.playerFrame.src = game.path;
+  els.playerFrame.src = url;
 }
 
 function showPlayerError(message) {
@@ -265,7 +275,11 @@ function closePlayer() {
 function resetPlayer() {
   els.playerFrame.src = "about:blank";
   state.currentWebGame = null;
-  if (document.fullscreenElement) document.exitFullscreen().catch(() => {});
+  const element = document.fullscreenElement || document.webkitFullscreenElement;
+  if (element) {
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    if (exit) Promise.resolve(exit.call(document)).catch(() => {});
+  }
 }
 
 /* ------------------------------- trailers ------------------------------- */
@@ -353,13 +367,36 @@ function wireUi() {
       els.playerOverlay.classList.add("hidden");
     }
   });
-  document.getElementById("playerFullscreen").addEventListener("click", () => {
-    if (document.fullscreenElement) {
-      document.exitFullscreen().catch(() => {});
-    } else if (els.playerModal.requestFullscreen) {
-      els.playerModal.requestFullscreen().catch(() => {});
+  const fsBtn = document.getElementById("playerFullscreen");
+  const fsStage = document.getElementById("playerStage");
+  const fullscreenElement = () => document.fullscreenElement || document.webkitFullscreenElement || null;
+  const syncFullscreenUi = () => {
+    const on = Boolean(fullscreenElement());
+    fsBtn.classList.toggle("is-fs", on);
+    fsBtn.setAttribute("aria-pressed", String(on));
+    fsBtn.setAttribute("aria-label", on ? "Exit fullscreen" : "Enter fullscreen");
+  };
+  fsBtn.addEventListener("click", () => {
+    if (fullscreenElement()) {
+      const exit = document.exitFullscreen || document.webkitExitFullscreen;
+      if (exit) Promise.resolve(exit.call(document)).catch(() => {});
+      return;
+    }
+    /* The stage goes fullscreen (not the dialog): the iframe then fills the screen. */
+    const request = fsStage.requestFullscreen || fsStage.webkitRequestFullscreen;
+    if (!request) {
+      showPlayerError("This browser does not support fullscreen. Press F11 for a browser-wide fullscreen view.");
+      return;
+    }
+    try {
+      const result = request.call(fsStage);
+      if (result && result.catch) result.catch(() => {});
+    } catch {
+      /* Ignore: the browser refused the request (e.g. permissions policy). */
     }
   });
+  document.addEventListener("fullscreenchange", syncFullscreenUi);
+  document.addEventListener("webkitfullscreenchange", syncFullscreenUi);
 
   /* copy email */
   const copyBtn = document.getElementById("copyEmail");

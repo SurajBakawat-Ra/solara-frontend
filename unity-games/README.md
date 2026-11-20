@@ -1,54 +1,89 @@
-# Unity WebGL games
+# Web games (Unity WebGL)
 
-Every browser-playable game lives in its own folder inside this directory, and each one is listed in
-`data/unity-games.json`.
+Each playable browser game lives in **its own GitHub repository**, published with GitHub Pages. This
+repository stores no game builds — only the card data in `data/unity-games.json` and a cover image in
+`images/`. The site embeds the published game in an iframe.
 
 ```
-unity-games/
-  README.md
-  rocket-autos/          <- one folder per game
-    index.html           <- the build's entry point
-    Build/               <- loader.js, .data, .framework.js, .wasm
-    TemplateData/
+rocket-autos repo (Unity WebGL build)
+        │  GitHub Pages
+        ▼
+https://<user>.github.io/rocket-autos/   ← iframe src from data/unity-games.json
 ```
 
-## Add a game
+## The JSON entry
 
-1. In Unity: **File → Build Settings → WebGL → Switch Platform**, then **Build**.
-2. Copy the **contents** of the build output folder into a new folder here, e.g. `unity-games/my-game/`.
-   Make sure `unity-games/my-game/index.html` exists (it is Unity's generated page).
-3. Add an entry to `data/unity-games.json`:
+`data/unity-games.json`:
 
 ```json
-{
-  "id": "my-game",
-  "title": "My Game",
-  "image": "my-game.jpg",
-  "platforms": ["WebGL"],
-  "description": "One or two sentences about the game."
-}
+[
+  {
+    "id": "rocket-autos",
+    "title": "Rocket Autos",
+    "image": "rocket-autos.jpg",
+    "platforms": ["WebGL"],
+    "description": "One or two sentences about the game.",
+    "path": "https://<user>.github.io/rocket-autos/"
+  }
+]
 ```
 
-`id` must match the folder name. `path` is optional and defaults to `unity-games/<id>/index.html`; set it only
-when the build lives somewhere else (an external URL also works).
+| Field | Meaning |
+| --- | --- |
+| `id` | Stable slug. Used by the play buttons and for the cover file name. |
+| `title` | Card heading. |
+| `image` | Cover file name inside `images/` (see below). |
+| `platforms` | Badges shown on the card. |
+| `description` | Card text. |
+| `path` | Where the build is served from. **An absolute URL** loads the game from its own Pages site. **A relative path or omitting it** falls back to `unity-games/<id>/index.html` inside this repo (handy for local testing). |
+
+## Publish a game (once per game)
+
+1. **In Unity:** `File → Build Settings → WebGL → Switch Platform`, then `Build`.
+   In *Player Settings → Publishing Settings*:
+   - enable **Decompression Fallback** — GitHub Pages will not send `Content-Encoding`, so the loader
+     must decompress in the browser;
+   - leave *Development Build* off.
+2. **Create a repo** for the game (for example `rocket-autos`) and push the **contents** of the build
+   output to its root, so `index.html`, `Build/` and `TemplateData/` sit at the top level.
+3. **Enable Pages:** repo → *Settings → Pages → Source: Deploy from a branch → `main` → `/ (root)`*.
+4. Wait for the deployment, then open `https://<user>.github.io/<repo>/` on its own. The game must run
+   there before the site can embed it.
+5. Paste that URL into `path` in `data/unity-games.json` and add a cover (below).
+
+A custom domain works too — use whatever Pages reports as the site URL.
+
+## Updating a game
+
+Push to the game repo. Pages redeploys on its own, so the new build is live without touching this site.
+Pages caches for a few minutes; Unity also caches builds in IndexedDB, so a hard refresh may be needed
+after a large upload.
+
+## Adding or removing a game on the site
+
+- **Add:** one object in `data/unity-games.json` + `images/<id>.jpg`. Nothing else.
+- **Remove:** delete the JSON object (and its cover). The game repo can stay online or be deleted
+  separately.
 
 ## Cover images
 
-Game covers are not linked from other sites — they live in the repository's `images/` folder and the JSON only
-stores the file name. Save the cover as `images/<id>.jpg` and point `image` at just the name (`"my-game.jpg"`).
+Covers are not hotlinked — they live in this repository's `images/` folder and the JSON stores only the
+file name.
 
-- Cover images must be **square (1:1)**. `images/` uses 640 × 640 JPGs.
-- Absolute URLs and paths (`https://…`, `images/foo.jpg`) still work if a file has to live elsewhere.
+- Square (1:1), 640 × 640 JPG: `images/rocket-autos.jpg`.
+- Absolute URLs still work if a cover has to live elsewhere.
 
-## Remove a game
+## Local development
 
-Delete its folder and its object from `data/unity-games.json`.
+- To test the real published game: just serve this site (`python -m http.server`) with internet access.
+- To test a build locally: drop it in `unity-games/<id>/index.html`, leave `path` relative or remove it,
+  and serve over HTTP. Opening the page from `file://` will not load WebGL builds.
 
 ## Notes
 
-- WebGL builds must be served over HTTP(S). Opening `index.html` from the file system will not work — run a
-  local server (`python -m http.server`) or deploy to GitHub Pages as usual.
-- Keep the whole build folder. Unity's `.data`, `.wasm`, `.framework.js` and `TemplateData/` files are all
-  required.
-- `rocket-autos/` is a placeholder page that explains this setup, with `images/rocket-autos.jpg` as its cover.
-  Replace its contents with the real build (or delete the folder, the image and its JSON entry).
+- Everything is HTTPS, and cross-origin iframes are fine — GitHub Pages does not send `X-Frame-Options`.
+- Relative asset paths are what make this work: the Unity loader requests `Build/…` next to its own
+  `index.html`, so the build must be at the repo root (a `<repo>/build/` subfolder also works if
+  `path` points at it).
+- The game repo is public, so a careful reader can find and play the build directly. Fine for public
+  games; not a place for anything private.
