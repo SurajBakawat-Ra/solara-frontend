@@ -717,9 +717,18 @@ p { margin: 0; }
 }
 .footer-inner {
   display: grid;
-  grid-template-columns: 1.2fr .8fr 1fr;
+  grid-template-columns: 1.05fr .6fr .7fr .8fr auto;
   gap: 32px;
   align-items: start;
+}
+.footer-heading {
+  margin: 0 0 12px;
+  font-family: Sora, Inter, sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted-2);
 }
 .footer-brand p { margin-top: 14px; max-width: 32ch; }
 .footer-nav { display: flex; flex-direction: column; gap: 10px; }
@@ -913,6 +922,7 @@ p { margin: 0; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .footer-meta { grid-column: span 2; align-items: flex-start; flex-direction: row; justify-content: space-between; }
 }
+
 
 @media (max-width: 860px) {
   .nav-links {
