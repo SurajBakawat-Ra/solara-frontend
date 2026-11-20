@@ -1,0 +1,12 @@
+[
+  {
+    "id": "example-game",
+    "title": "Skyforge Runner",
+    "image": "https://img.youtube.com/vi/Q_pv6QVvIjA/hqdefault.jpg",
+    "platforms": [
+      "WebGL"
+    ],
+    "description": "Example browser build. Drop a Unity WebGL export into unity-games/example-game/ and this card becomes a playable game.",
+    "path": "unity-games/example-game/index.html"
+  }
+]
