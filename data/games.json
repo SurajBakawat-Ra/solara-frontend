@@ -15,7 +15,7 @@
       "Platformer"
     ],
     "images": {
-      "cover": "https://img.youtube.com/vi/Q_pv6QVvIjA/hqdefault.jpg"
+      "cover": "vector-horizon.jpg"
     },
     "description": "Launch into Vector Horizon and guide a car built to fly through high-skill obstacle courses. Nail your timing, perfect your control, and soar through the sky."
   },
@@ -35,7 +35,7 @@
       "First Person Shooter"
     ],
     "images": {
-      "cover": "https://img.youtube.com/vi/YiDwlVA0btQ/hqdefault.jpg"
+      "cover": "gunboxing.jpg"
     },
     "description": "GunBoxing is a free-to-play, fast-paced multiplayer shooter with a heavy focus on fighting game mechanics, combining long range shooting combat with crazy close range melee combat."
   },
@@ -54,7 +54,7 @@
       "Action"
     ],
     "images": {
-      "cover": "https://img.youtube.com/vi/OOpC1lYbfBs/hqdefault.jpg"
+      "cover": "cosmo-war.jpg"
     },
     "description": "Prepare your starship, take to the stars, and defend the galaxy in CosmoWAR: Galaxy Shooter! The universe is counting on you."
   },
@@ -73,7 +73,7 @@
       "Fantasy"
     ],
     "images": {
-      "cover": "https://img.youtube.com/vi/pW4nIEWJsmc/hqdefault.jpg"
+      "cover": "almanac.jpg"
     },
     "description": "A 2D fantasy RPG with only one goal, killing the Precursor, who is an omnipotent being that destroys and recreates the world whenever he wants."
   },
@@ -92,7 +92,7 @@
       "Casual"
     ],
     "images": {
-      "cover": "https://play-lh.googleusercontent.com/Bg3XDY6b4aFpKvlJxN4244mM-46-DMGXergtwO7GxcKMmaqe1ox7P6Ng-7mLDKnBmaYU=s256-rw"
+      "cover": "chicken-bounce.jpg"
     },
     "description": "Welcome to Chicken Bounce, guide a playful chicken through a series of challenging obstacles! With simple controls and addictive gameplay, Chicken Bounce will keep you entertained for hours."
   },
@@ -111,7 +111,7 @@
       "Casual"
     ],
     "images": {
-      "cover": "https://play-lh.googleusercontent.com/BB516ty5zmLHYZgEgOna6kSF2H_TJwhGKobDhv0-7O90SY8bcVXF7NyiK4mnhc7wkg=w240-h480-rw"
+      "cover": "tappy-fly.jpg"
     },
     "description": "TappyFly is a captivating mobile game designed to test your reflexes and precision. In this game, players tap the screen to control a shape, guiding it through a series of increasingly difficult obstacles."
   }

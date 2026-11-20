@@ -1,0 +1,12 @@
+[
+  {
+    "id": "rocket-autos",
+    "title": "Rocket Autos",
+    "image": "rocket-autos.jpg",
+    "platforms": [
+      "WebGL"
+    ],
+    "description": "Rocket-powered car football. Practise offline, take on the bots in 1v1, then climb the casual and ranked ladders.",
+    "path": "https://surajbakawat-ra.github.io/testgame/"
+  }
+]
