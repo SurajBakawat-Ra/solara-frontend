@@ -1,12 +1,12 @@
 [
   {
-    "id": "example-game",
-    "title": "Skyforge Runner",
-    "image": "example-game.jpg",
+    "id": "rocket-autos",
+    "title": "Rocket Autos",
+    "image": "rocket-autos.jpg",
     "platforms": [
       "WebGL"
     ],
-    "description": "Example browser build. Drop a Unity WebGL export into unity-games/example-game/ and this card becomes a playable game.",
-    "path": "unity-games/example-game/index.html"
+    "description": "Rocket-powered car football. Practise offline, take on the bots in 1v1, then climb the casual and ranked ladders.",
+    "path": "unity-games/rocket-autos/index.html"
   }
 ]

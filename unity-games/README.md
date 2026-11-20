@@ -6,7 +6,7 @@ Every browser-playable game lives in its own folder inside this directory, and e
 ```
 unity-games/
   README.md
-  example-game/          <- one folder per game
+  rocket-autos/          <- one folder per game
     index.html           <- the build's entry point
     Build/               <- loader.js, .data, .framework.js, .wasm
     TemplateData/
@@ -50,5 +50,5 @@ Delete its folder and its object from `data/unity-games.json`.
   local server (`python -m http.server`) or deploy to GitHub Pages as usual.
 - Keep the whole build folder. Unity's `.data`, `.wasm`, `.framework.js` and `TemplateData/` files are all
   required.
-- `example-game/` is a placeholder page that explains this setup, with `images/example-game.jpg` as its cover.
-  Delete the folder, the image and its JSON entry once you have real builds.
+- `rocket-autos/` is a placeholder page that explains this setup, with `images/rocket-autos.jpg` as its cover.
+  Replace its contents with the real build (or delete the folder, the image and its JSON entry).
