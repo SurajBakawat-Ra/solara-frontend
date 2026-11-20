@@ -464,7 +464,7 @@ p { margin: 0; }
 
 .web-thumb {
   position: relative;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1 / 1;
   background: #0b0d15;
   overflow: hidden;
 }
@@ -606,7 +606,7 @@ p { margin: 0; }
   box-shadow: var(--shadow);
 }
 
-.thumb { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #0b0d15; }
+.thumb { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #0b0d15; }
 .thumb img {
   width: 100%;
   height: 100%;

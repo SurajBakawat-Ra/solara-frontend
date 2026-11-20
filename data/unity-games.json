@@ -2,7 +2,7 @@
   {
     "id": "example-game",
     "title": "Skyforge Runner",
-    "image": "https://img.youtube.com/vi/Q_pv6QVvIjA/hqdefault.jpg",
+    "image": "example-game.jpg",
     "platforms": [
       "WebGL"
     ],

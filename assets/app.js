@@ -46,15 +46,26 @@ const esc = (value) =>
 const PLACEHOLDER_IMG =
   "data:image/svg+xml;charset=utf-8," +
   encodeURIComponent(
-    '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360">' +
+    '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640">' +
     '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
     '<stop offset="0" stop-color="#161b2b"/><stop offset="1" stop-color="#0b0d15"/>' +
     "</linearGradient></defs>" +
-    '<rect width="640" height="360" fill="url(#g)"/>' +
+    '<rect width="640" height="640" fill="url(#g)"/>' +
     '<g fill="none" stroke="#ffc857" stroke-opacity=".45" stroke-width="3">' +
-    '<circle cx="320" cy="180" r="46"/><path d="m308 162 30 18-30 18z" fill="#ffc857" stroke="none"/>' +
+    '<circle cx="320" cy="320" r="46"/><path d="m308 302 30 18-30 18z" fill="#ffc857" stroke="none"/>' +
     "</g></svg>"
   );
+
+/* Game images live in /images and are referenced by file name in the JSON. */
+const IMAGE_DIR = "images/";
+
+function imageUrl(name) {
+  const value = String(name ?? "").trim();
+  if (!value) return PLACEHOLDER_IMG;
+  /* Absolute URLs, data URIs and explicit paths keep working as-is. */
+  if (/^(?:https?:|data:|\/|\.{1,2}\/)/i.test(value) || value.includes("/")) return value;
+  return IMAGE_DIR + value;
+}
 
 const storeLabel = (key) => {
   const map = {
@@ -160,7 +171,7 @@ function catalogCard(g) {
   return `
     <article class="game-card">
       <div class="thumb">
-        <img src="${esc(g.images?.cover || PLACEHOLDER_IMG)}" alt="${esc(g.title)} cover art" loading="lazy"
+        <img src="${esc(imageUrl(g.images?.cover))}" alt="${esc(g.title)} cover art" loading="lazy"
           onerror="this.onerror=null;this.src='${PLACEHOLDER_IMG}'" />
         ${platforms.length ? `<span class="thumb-platform">${esc(platforms[0])}</span>` : ""}
       </div>
@@ -186,7 +197,7 @@ function webCard(g) {
     <article class="web-card">
       <div class="web-thumb">
         <span class="web-tag">Playable</span>
-        <img src="${esc(g.image || PLACEHOLDER_IMG)}" alt="${esc(g.title)} cover art" loading="lazy"
+        <img src="${esc(imageUrl(g.image))}" alt="${esc(g.title)} cover art" loading="lazy"
           onerror="this.onerror=null;this.src='${PLACEHOLDER_IMG}'" />
         <div class="web-play">
           <button class="play-btn" data-play="${esc(g.id)}" aria-label="Play ${esc(g.title)}">
